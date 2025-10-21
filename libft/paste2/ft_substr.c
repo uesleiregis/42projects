@@ -12,8 +12,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	p = (char *)malloc(sizeof(char)*(len + 1));
 	if(!p)
 		return (NULL);
-	str = (char *)s;
-	str += (char *)(s + start);
+	str = (char *)(s + start);
 	i = 0;
 	while(str[i] && i < len)
 	{
@@ -23,9 +22,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	p[i] = '\0';
 	return (p);
 }
+// #include <stdio.h>
+// int main()
+// {
+//     // ft_substr
+// 	// *s »» string maior
+// 	// start »» valor inteiro
+// 	// função retorna uma string com os caracteres de *s a partir da 
+// 	// posição start da string. 
+// 	// len »» é o tamanho máximo dessa nova string (para no fim de s
+// 	// ou no tamanho máximo de len)
 
-int main()
-{
+// 	printf("%s", ft_substr("Mamae eu quero", 6, 4));
 
-	return (0);
-}
+// 	return (0);
+// }

@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// Concatena src no fim de dest e poe o \0 no final.
 char *ft_strcat(char *dest, char *src){
     char *p= dest;
   

@@ -1,17 +1,29 @@
-#include "libft.a"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uregis-d <uregis-d@student.42porto.co      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/20 11:01:29 by uregis-d          #+#    #+#             */
+/*   Updated: 2025/10/20 11:43:50 by uregis-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strchr(const char *str, int c)
 {
 	char	*p;
 
-	p =(char *)str;
-	while(*p)
+	p = (char *)str;
+	while (*p)
 	{
-		if(*p ==(char)c)
+		if (*p == (char)c)
 			return (p);
 		p++;
 	}
-	if((char)c == '\0' )
+	if ((char)c == '\0' )
 		return (p);
 	return (NULL);
 }

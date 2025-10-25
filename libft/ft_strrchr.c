@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uregis-d <uregis-d@student.42porto.co      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/20 11:04:03 by uregis-d          #+#    #+#             */
+/*   Updated: 2025/10/20 11:57:52 by uregis-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
+
 char	*strrchr(const char *str, int c)
 {
 	char	*p;
@@ -6,13 +19,13 @@ char	*strrchr(const char *str, int c)
 
 	res = NULL;
 	p = (char *)str;
-	while(*p)
+	while (*p)
 	{
-		if(*p == (char)c)
-		res = p;	
+		if (*p == (char)c)
+			res = p;
 		p++;
 	}
-	if( (char)c == '\0')
+	if ((char)c == '\0')
 		return (p);
 	return (res);
 }

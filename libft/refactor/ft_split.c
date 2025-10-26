@@ -6,16 +6,16 @@
 /*   By: uregis-d <uregis-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 11:55:18 by uregis-d          #+#    #+#             */
-/*   Updated: 2025/10/25 23:04:09 by uregis-d         ###   ########.fr       */
+/*   Updated: 2025/10/26 00:57:09 by uregis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strlen(const char *str);
+
 static int	my_count_words(const char *str, char c);
 char	*str_chr_dup(const char *s, char set);
-static void	my_next_str_start(const char *str, unsigned int *start, char c);
+static void my_str_start(const char *str, int *start, int *step, char c);
 char **ft_split(char const *s, char c);
 
 #include <stdio.h>
@@ -43,33 +43,31 @@ int main()
 
 char **ft_split(char const *s, char c)
 {
-	int 	n_words;
 	char	**res;
 	int		i;
 	int		start;
+	int		step;
 
 	i = 0;
 	start = 0;
-	n_words = my_count_words(s, c);
-	res = malloc(sizeof(char *) * (n_words + 1));
+	if(!s)
+		return (NULL);
+	res = malloc(sizeof(char *) * (my_count_words(s, c) + 1));
 	if(!res)
 		return (NULL);
-	while(i < n_words)
+	if(my_count_words(s, c) == 0)
 	{
-		my_next_str_start(s, &start, c);
-		res[i] = str_chr_dup(&s[start], c);
+		res[0] = NULL;
+		return (res);
 	}
-}
-
-
-static int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	while(i < my_count_words(s, c))
+	{
+		my_str_start(s, &start, &step, c);
+		res[i++] = str_chr_dup(&s[start], c);
+		start += step; 
+	}
+	res[i] = NULL;
+	return (res);
 }
 
 static int	my_count_words(const char *str, char c)
@@ -95,21 +93,22 @@ static int	my_count_words(const char *str, char c)
 	return (count_w);
 }
 
-static void	my_next_str_start(const char *str, unsigned int *start, char c)
+static void my_str_start(const char *str, int *start, int *step, char c)
 {
-	int		i;
-	
+	int	i;
+	int flag;
+
+	*step = 0;
+	flag = 0;
 	i = 0;
 	if (!str)
 		return ;
-	if (str[i] && str[i] != c)
-	{
-		*start = i;
-		return ;
-	}
-	while(str[i] == c)
-		i++;
-	*start = 0;
+	while(str[*start] == c && str[*start])
+		(*start)++;								//»» *start ajustado					
+	while(str[*start + *step] != c && str[*start + *step])
+		(*step)++;
+	while(str[*start + *step] == c && str[*start + *step])
+		(*step)++;
 	return ;
 }
 

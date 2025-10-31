@@ -22,22 +22,21 @@ int ft_strlen(char const *str)
 
 char *get_next_line(int fd)
 {
-	char	*buffer;
-	ssize_t	bytes;
-	int		count;
-	char	*rest;
+	static char	*resto;			//para salvar o que sobrou da última leitura
+	char		*buffer;		// área temporária de leitura
+	char		*linha;			// o que será retornado
+	ssize_t		bytes;			// nº de bytes lidos em cada read()
 
-	count = 0;
-	buffer  = malloc(BUFFER_SIZE);
-	bytes = read(fd, buffer, sizeof(buffer));
+	// 1 - validação
+	if(fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	// 2 - Alocar memória para o buffer temporário.
 
-	while(buffer[count] != '\n' || buffer[count] != EOF)
-	{
-		count++;
-	}
+	buffer = malloc(BUFFER_SIZE + 1);
 
 
 
 
-	return (buffer);
+
+	return ();
 }

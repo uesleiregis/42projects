@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uregis-d <uregis-d@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/06 21:03:15 by uregis-d          #+#    #+#             */
+/*   Updated: 2025/11/06 21:05:05 by uregis-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void ft_lstclear(t_list **lst, void(*del)(void *))
+static void ft_lstclear(t_list **lst, void(*del)(void *))
 {
     t_list  *temp;
     t_list  *actual;

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uregis-d <uregis-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 20:35:53 by uregis-d          #+#    #+#             */
-/*   Updated: 2025/11/06 21:04:57 by uregis-d         ###   ########.fr       */
+/*   Created: 2025/11/06 21:04:20 by uregis-d          #+#    #+#             */
+/*   Updated: 2025/11/06 21:24:45 by uregis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_lstadd_front(t_list **lst, t_list *new)
+void    ft_lstiter(t_list *lst, void (*f)(void *))
 {
-    if(lst && new)
+    if (!lst)
+        return ;
+    while (lst)
     {
-        new -> next = *lst;
-        *lst = new;
+        f(lst -> content);
+        lst = lst -> next;
     }
 }

@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     fd = open(argv[1], O_RDONLY);
     if (fd == -1)
     {
-        display_error("Cannot read file.\n");
+        display_error("Cannot read file .\n");
         return (1);
     }
     

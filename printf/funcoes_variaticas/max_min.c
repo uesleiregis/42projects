@@ -1,42 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maior_num.c                                        :+:      :+:    :+:   */
+/*   max_min.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uregis-d <uregis-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 22:07:36 by uregis-d          #+#    #+#             */
-/*   Updated: 2025/11/24 19:46:52 by uregis-d         ###   ########.fr       */
+/*   Created: 2025/11/24 23:27:14 by uregis-d          #+#    #+#             */
+/*   Updated: 2025/11/24 23:33:28 by uregis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h>
 
-int	maior_num(int quant, ...)
+void	max_min(int *max, int *min, int count, ...)
 {
-	va_list	args;
-	int		maior;
 	int		i;
-	int		valor;
+	va_list	args;
+	int		big;
+	int		littte;
+	int		value;
 
 	i = 0;
-	maior = -1000;
-	va_start(args, quant);
-	while (i++ < quant)
+	big = -1000;
+	littte = 1000;
+	va_start(args, count);
+	while (i++ < count)
 	{
-		valor = va_arg(args, int);
-		if (valor > maior)
-			maior = valor;
+		value = va_arg(args, int);
+		if (value > big)
+			big = value;
+		else if (value < littte)
+			littte = value;
 	}
-	if (maior == -1000)
-		return (0);
-	va_end(args);
-	return (maior);
+	*max = big;
+	*min = littte;
 }
 
 int	main(void)
 {
-	printf("%d\n", maior_num(4, 1, 20, 7, 9));
+	int	maior;
+	int	menor;
+
+	max_min(&maior, &menor, 5, 4, 5, 2, 8, 5);
+	printf("Maior: %d - Menor: %d\n", maior, menor);
 	return (0);
 }

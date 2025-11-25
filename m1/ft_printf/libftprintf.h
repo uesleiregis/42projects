@@ -6,7 +6,7 @@
 /*   By: uregis-d <uregis-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 18:12:28 by uregis-d          #+#    #+#             */
-/*   Updated: 2025/11/25 15:01:29 by uregis-d         ###   ########.fr       */
+/*   Updated: 2025/11/25 16:18:09 by uregis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 // int		ft_printf(const char *s, ...);
 int		ft_isalpha(int c);

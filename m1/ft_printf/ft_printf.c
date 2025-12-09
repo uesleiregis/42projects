@@ -68,9 +68,10 @@ int	count_valid_descriptors(char *str, char *descriptors )
 // 	return (count_str()); // retorna o tamanho da string de saída.
 // }
 
-#include <stdio.h>
+/* #include <stdio.h>
 int main(void)
 {
 	printf("%d", count_valid_descriptors("c%soisa mais%clinda %dmais linda", "csd"));
 	return (0);
 }
+ */

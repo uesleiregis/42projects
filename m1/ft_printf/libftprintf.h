@@ -19,6 +19,7 @@
 # include <stdarg.h>
 
 // int		ft_printf(const char *s, ...);
+int		ft_printf(const char *str, ...);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);

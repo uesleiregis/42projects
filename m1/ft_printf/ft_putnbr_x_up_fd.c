@@ -14,6 +14,6 @@ void	ft_putnbr_x_up_fd(unsigned int n, int fd)
 }
 // int main(void)
 // {
-//     ft_putnbr_x_up_fd(255, 1); // ff
+//     ft_putnbr_x_up_fd(255, 1); //  ff
 //     return (0);
 // }

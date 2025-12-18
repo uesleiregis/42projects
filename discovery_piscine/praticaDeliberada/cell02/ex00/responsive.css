@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    width: 90vw;
+    margin: 0 auto;
+    /* border: 1px solid red; */
+    height: 100vh;
+}
+
+.box {
+    width: 50%;
+    height: 70px;
+}
+
+.box:first-child {
+    background-color: rgb(213, 238, 154);
+}
+
+.box:nth-child(2) {
+    background-color: rgb(145, 128, 186);
+}
+
+.box:nth-child(1),
+.box:nth-child(2) {
+    height: 100%;
+}
+
+.box {
+    height: 100px;
+    display: flex;
+}
+
+p {
+    line-height: 100vh;
+}

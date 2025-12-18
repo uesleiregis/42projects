@@ -1,6 +1,4 @@
 
-document.getElementById('coisa').innerText = "e isso ai";
-
 
 
 const btn = document.getElementById('btn');
@@ -37,9 +35,9 @@ btn.addEventListener('click', () => {
         newDiv.appendChild(newP);
         newDiv.appendChild(newBtn);
 
-        // Inserindo o elemento newDiv na tela
+        // Inserindo o elemento newDiv NO INÍCIO da lista
         const list = document.getElementById('ft_list');
-        list.appendChild(newDiv);
+        list.prepend(newDiv);  // prepend = adiciona no início
 
         // Removendo 
         newBtn.addEventListener("click", () => {

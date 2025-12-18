@@ -90,46 +90,52 @@ function carregarTarefasDoCookie() {
 
     const list = document.getElementById('ft_list');
 
-    cookies.forEach(cookie => {
+    // Filtra apenas cookies de tarefas e ordena pelo ID (maior primeiro)
+    const tarefas = cookies
+        .filter(cookie => cookie.startsWith('task'))
+        .sort((a, b) => {
+            const idA = parseInt(a.split('=')[0].replace('task', ''));
+            const idB = parseInt(b.split('=')[0].replace('task', ''));
+            return idB - idA; // Ordem decrescente (mais recente primeiro)
+        });
+
+    tarefas.forEach(cookie => {
         const [id, valor] = cookie.split('=');
 
-        // Verifica se é um cookie de tarefa (começa com "task")
-        if (id.startsWith('task')) {
-            const taskText = decodeURIComponent(valor);
+        const taskText = decodeURIComponent(valor);
 
-            // Extrai o número do ID (ex: "task5" → 5)
-            const numId = parseInt(id.replace('task', ''));
+        // Extrai o número do ID (ex: "task5" → 5)
+        const numId = parseInt(id.replace('task', ''));
 
-            // Atualiza tasksId para evitar IDs duplicados
-            if (numId >= tasksId) {
-                tasksId = numId + 1;
-            }
-
-            // Cria a div da tarefa (mesmo código do btn.addEventListener)
-            const newDiv = document.createElement('div');
-            newDiv.className = 'chield';
-            newDiv.id = id;
-
-            const newP = document.createElement('p');
-            newP.textContent = taskText;
-
-            const newBtn = document.createElement('button');
-            newBtn.className = 'btn-chield';
-            newBtn.textContent = 'done';
-            newBtn.id = `b${numId}`;
-
-            newDiv.appendChild(newP);
-            newDiv.appendChild(newBtn);
-            list.appendChild(newDiv);
-
-            // Adiciona evento de remover
-            newBtn.addEventListener("click", () => {
-                deletarCookie(newDiv.id);
-                newBtn.parentElement.remove();
-            });
-
-            console.log(`📋 Tarefa carregada: "${taskText}"`);
+        // Atualiza tasksId para evitar IDs duplicados
+        if (numId >= tasksId) {
+            tasksId = numId + 1;
         }
+
+        // Cria a div da tarefa (mesmo código do btn.addEventListener)
+        const newDiv = document.createElement('div');
+        newDiv.className = 'chield';
+        newDiv.id = id;
+
+        const newP = document.createElement('p');
+        newP.textContent = taskText;
+
+        const newBtn = document.createElement('button');
+        newBtn.className = 'btn-chield';
+        newBtn.textContent = 'done';
+        newBtn.id = `b${numId}`;
+
+        newDiv.appendChild(newP);
+        newDiv.appendChild(newBtn);
+        list.appendChild(newDiv);  // Adiciona no final (já está ordenado)
+
+        // Adiciona evento de remover
+        newBtn.addEventListener("click", () => {
+            deletarCookie(newDiv.id);
+            newBtn.parentElement.remove();
+        });
+
+        console.log(`📋 Tarefa carregada: "${taskText}"`);
     });
 }
 

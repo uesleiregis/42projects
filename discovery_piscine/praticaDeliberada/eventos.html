@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addEventListener</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        .prim, .seg, .ter{
+            width: 400px;
+            height: 40px;
+            background-color: bisque;
+            border: 1px solid rgb(217, 192, 163);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="prim">
+        <button id="btn">Mudar cor de fundo</button>
+        </div>
+    <div class="seg">Segunda</div>
+    <div class="ter">Terceira</div>
+
+    <script>
+
+        const btn = document.getElementById('btn');
+        const prim = document.getElementsByClassName('prim')[0];
+        prim.style.backgroundColor = "red";
+        btn.addEventListener("click", () => {
+            prim.style.backgroundColor = "green";
+        })
+    </script>
+</body>
+</html>

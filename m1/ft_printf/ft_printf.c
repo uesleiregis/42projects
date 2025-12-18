@@ -81,7 +81,7 @@ static int	ft_print_args_fd(char c, va_list list, int fd)
 
 int	ft_printf(const char *str, ...)
 {
-	int		count_var;
+	//int		count_var;
 	va_list	args;
 	int		i;
 	int		count_chars;
@@ -92,7 +92,7 @@ int	ft_printf(const char *str, ...)
 	if (!str || !str_is_valid(str))
 		return (-1);
 	i = 0;
-	count_var = count_valid_descriptors((char *)str, "cspdiuxX");
+	//count_var = count_valid_descriptors((char *)str, "cspdiuxX");
 	while (str[i])
 	{
 		if(str[i] && str[i] != '%')
@@ -102,16 +102,16 @@ int	ft_printf(const char *str, ...)
 		}
 		else
 		{
-			if (*(str + 1) == '\0')
+			if (str[i + 1] == '\0')
 				break ;
-			if (*(str + 1) == '%')
+			if (str[i + 1] == '%')
 			{
-				str += 2;
+				i += 2;
 				continue ;
 			}
-			if (ft_strchr("cspdiuxX", *(str + 1)))
+			if (ft_strchr("cspdiuxX", str [i + 1]))
 				count_chars += ft_print_args_fd(str[++i], args, FD);
-			str += 2;
+			i += 2;
 			continue ;
 		}
 		i++;
@@ -123,6 +123,7 @@ int	ft_printf(const char *str, ...)
 /* #include <stdio.h>
 int main(void)
 {
+	ft_printf("Teste");
 	printf("%d", count_valid_descriptors("c%soisa mais%clinda %dmais linda", "csd"));
 	return (0);
-}*/
+} */

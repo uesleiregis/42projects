@@ -1,46 +1,61 @@
-<html>
-    <head>
-        <style>
-            *{
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
-            body{
-                display: flex;
-                width: 90vw;
-                margin: 0 auto;
-                flex-shrink: 0;
-            }
-            div{
-                width: 50%;
-                height: 70px;
-                margin-top: 50px;
-            }
-            div:first-child{
-                background-color: rgb(213, 238, 154);
-            }
-            div:nth-child(2)
-            {
-                background-color: rgb(145, 128, 186);
-            }
-            div{
-                height: 100px;   
-            }
-            p{
-                line-height: 100px;
-            }
-            
-        </style>
-    </head>
-    <body>
-        <div>
-            <p>Amanhã é...</p>
-        </div>
-        <div>
-            <p>
-                ... um novo dia.
-            </p>
-        </div>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            width: 90vw;
+            margin: 0 auto;
+            /* border: 1px solid red; */
+            height: 100vh;
+        }
+
+        .box {
+            width: 50%;
+            height: 70px;
+        }
+
+        .box:first-child {
+            background-color: rgb(213, 238, 154);
+        }
+
+        .box:nth-child(2) {
+            background-color: rgb(145, 128, 186);
+        }
+        .box:nth-child(1), .box:nth-child(2)
+        {
+            height: 100%;
+        }
+        .box {
+            height: 100px;
+            display: flex;
+        }
+
+        p {
+            line-height: 100vh;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <p>Amanhã é...</p>
+    </div>
+    <div class="box">
+        <p>
+            ... um novo dia.
+        </p>
+    </div>
+</body>
+
 </html>

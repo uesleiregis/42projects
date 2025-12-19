@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change background</title>
+    <link rel="stylesheet" href="background.css">
+</head>
+
+<body>
+
+    <button id="btn">Button</button>
+
+    <script>
+        const cores = [
+            "#006400",
+            "#800000",
+            "#3498db",
+            "#9b59b6",
+            "#e67e22",
+            "#e74c3c"
+        ];
+        const botao = document.getElementById("btn");
+        botao.addEventListener("click", () => {
+            const cor = cores[Math.floor(Math.random() * cores.length)];
+            document.body.style.backgroundColor = cor;
+        });
+    </script>
+</body>
+
+</html>

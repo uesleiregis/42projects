@@ -1,0 +1,116 @@
+
+/* ================================================
+   ESTILO-HOME.CSS
+   Estilos customizados que não existem no Bootstrap
+   ================================================ */
+
+/* === VARIÁVEIS DE CORES === */
+:root {
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+    --card-shadow: rgba(102, 126, 234, 0.4);
+    --card-hover-shadow: rgba(118, 75, 162, 0.6);
+    --text-dark: #2d3748;
+    --text-muted: #718096;
+}
+
+/* === FUNDO GRADIENTE === */
+body {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+}
+
+/* === NAVBAR GLASSMORPHISM === */
+.navbar-glass {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-glass .nav-link,
+.navbar-glass .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-glass .nav-link:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transform: translateY(-2px);
+}
+
+.navbar-glass .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-glass .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* === DROPDOWN ESTILIZADO === */
+.dropdown-menu-glass {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-item-gradient {
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 4px 8px;
+    width: auto;
+}
+
+.dropdown-item-gradient:hover {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+}
+
+/* Dropdown abre com hover em desktop */
+@media (min-width: 992px) {
+    .navbar .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    .navbar .nav-item.dropdown .dropdown-menu {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .navbar-brand {
+        display: none;
+    }
+}
+
+/* === CARDS CUSTOMIZADOS === */
+.card-custom {
+    border-radius: 20px;
+    box-shadow: 0 10px 40px var(--card-shadow);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-custom .card-img-top {
+    border-radius: 20px 20px 0 0;
+}
+
+.card-custom .card-title {
+    color: var(--text-dark);
+}
+
+.card-custom .card-subtitle {
+    color: var(--text-muted);
+}
+
+/* === EFEITO HOVER NOS CARDS === */
+.cards-container:hover .card-custom {
+    opacity: 0.6;
+    transform: scale(0.95);
+    filter: blur(1px);
+}
+
+.cards-container .card-custom:hover {
+    opacity: 1;
+    transform: scale(1.08) translateY(-15px);
+    box-shadow: 0 20px 60px var(--card-hover-shadow);
+    filter: blur(0);
+    z-index: 10;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engenheira Florestal</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh; /* ocupa toda a tela */
+            width: 100%;
+            background-image: url('/home/jpezzoti/Downloads/conceito-de-colagem-de-html-e-css-com-pessoa.jpg'); /* imagem de fundo */
+            background-size: cover; /* cobre toda a área */
+            background-position: center; /* centraliza a imagem */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* Overlay escuro para melhor contraste */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* escurece a imagem */
+            z-index: 1;
+        }
+
+        .hero h1, .hero p {
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .hero h1 {
+            font-size: 4em;
+        }
+
+        .hero p {
+            font-size: 2em;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 8vw; }
+            .hero p { font-size: 4vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div>
+            <h1>Jeniffer Pezzoti</h1>
+            <p>Developer</p>
+        </div>
+    </div>
+</body>
+</html>

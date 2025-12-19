@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change background</title>
+    <link rel="stylesheet" href="background.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <button id="btn">Button</button>
+    <script>
+        const cores = [
+            "#006400",
+            "#800000",
+            "#3498db",
+            "#9b59b6",
+            "#e67e22",
+            "#e74c3c"
+        ];
+        $("#btn").click(() => {
+            const cor = cores[Math.floor(Math.random() * cores.length)];
+            $("body").css("background-color", cor);
+        });
+    </script>
+</body>
+
+</html>

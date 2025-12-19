@@ -1,0 +1,163 @@
+/* ================================================
+   PROFILE.CSS
+   Estilos customizados para páginas de perfil
+   ================================================ */
+
+/* === VARIÁVEIS DE CORES === */
+:root {
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+    --text-dark: #2d3748;
+    --text-muted: #718096;
+}
+
+/* === FUNDO GRADIENTE === */
+body {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    min-height: 100vh;
+}
+
+/* === NAVBAR GLASSMORPHISM === */
+.navbar-glass {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-glass .nav-link,
+.navbar-glass .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-glass .nav-link:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transform: translateY(-2px);
+}
+
+.navbar-glass .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-glass .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* === DROPDOWN ESTILIZADO === */
+.dropdown-menu-glass {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-item-gradient {
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 4px 8px;
+    width: auto;
+}
+
+.dropdown-item-gradient:hover {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+}
+
+/* Dropdown abre com hover em desktop */
+@media (min-width: 992px) {
+    .navbar .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    .navbar .nav-item.dropdown .dropdown-menu {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .navbar-brand {
+        display: none;
+    }
+}
+
+/* === SEÇÃO FOTO COM PARALLAX (PRETA) === */
+#photo-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('u.jpg') center center / cover no-repeat;
+    background-color: #1a1a1a;
+    z-index: -2;
+}
+
+/* === SEÇÃO EXPERIENCES COM PARALLAX === */
+#experiences {
+    position: sticky;
+    top: 0;
+    margin-top: 100vh;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    z-index: 1;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+}
+
+#experiences h5 {
+    color: var(--gradient-start);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--gradient-start);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+#experiences p,
+#experiences li {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+}
+
+/* === FOTO PERFIL JENIFFER === */
+.photo-jeniffer {
+    background: url('https://img.freepik.com/fotos-gratis/retrato-de-desenho-animado-em-3d-de-uma-pessoa-que-pratica-uma-profissao-relacionada-ao-direito_23-2151419520.jpg') center center / cover no-repeat !important;
+}
+
+/* === PRÓXIMA SEÇÃO (SOBE SOBRE EXPERIENCES) === */
+#next-section {
+    position: relative;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    min-height: 100vh;
+    z-index: 2;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* === TÍTULO COM GRADIENTE === */
+.title-gradient {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+/* === BOTÃO COM GRADIENTE === */
+.btn-gradient {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border: none;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, var(--gradient-end), var(--gradient-start));
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}

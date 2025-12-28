@@ -12,33 +12,33 @@
 
 #include "libftprintf.h"
 
-static int	count_valid_descriptors(char *str, char *descriptors )
-{
-	int	count;
+// static int	count_valid_descriptors(char *str, char *descriptors )
+// {
+// 	int	count;
 
-	count = 0;
-	if (!str || !descriptors)
-		return (-1);
-	while (*str)
-	{
-		if (*str == '%')
-		{
-			if (*(str + 1) == '\0')
-				break ;
-			if (*(str + 1) == '%')
-			{
-				str += 2;
-				continue ;
-			}
-			if (ft_strchr(descriptors, *(str + 1)))
-				count++;
-			str += 2;
-			continue ;
-		}
-		str++;
-	}
-	return (count);
-}
+// 	count = 0;
+// 	if (!str || !descriptors)
+// 		return (-1);
+// 	while (*str)
+// 	{
+// 		if (*str == '%')
+// 		{
+// 			if (*(str + 1) == '\0')
+// 				break ;
+// 			if (*(str + 1) == '%')
+// 			{
+// 				str += 2;
+// 				continue ;
+// 			}
+// 			if (ft_strchr(descriptors, *(str + 1)))
+// 				count++;
+// 			str += 2;
+// 			continue ;
+// 		}
+// 		str++;
+// 	}
+// 	return (count);
+// }
 
 static int	str_is_valid(const char *str)
 {
@@ -79,51 +79,38 @@ static int	ft_print_args_fd(char c, va_list list, int fd)
 	return (0);
 }
 
-int	ft_printf(const char *str, ...)
+static int	ft_handle_format(const char *str, int *i, va_list args)
 {
-	//int		count_var;
-	va_list	args;
-	int		i;
-	int		count_chars;
+	int	count;
 
-	va_start(args, str);
-	count_chars = 0;
-	i = 0;
-	if (!str || !str_is_valid(str))
-		return (-1);
-	i = 0;
-	//count_var = count_valid_descriptors((char *)str, "cspdiuxX");
-	while (str[i])
-	{
-		if(str[i] && str[i] != '%')
-		{
-			ft_putchar_fd(str[i], FD);
-			count_chars++;
-		}
-		else
-		{
-			if (str[i + 1] == '\0')
-				break ;
-			if (str[i + 1] == '%')
-			{
-				i += 2;
-				continue ;
-			}
-			if (ft_strchr("cspdiuxX", str [i + 1]))
-				count_chars += ft_print_args_fd(str[++i], args, FD);
-			i += 2;
-			continue ;
-		}
-		i++;
-	}
-	va_end(args);
-	return (count_chars); // retorna o tamanho da string de saída.
+	count = 0;
+	if (str[*i + 1] == '%')
+		count = ft_print_c('%', FD);
+	else
+		count = ft_print_args_fd(str[*i + 1], args, FD);
+	*i += 2;
+	return (count);
 }
 
-/* #include <stdio.h>
-int main(void)
+int	ft_printf(const char *str, ...)
 {
-	ft_printf("Teste");
-	printf("%d", count_valid_descriptors("c%soisa mais%clinda %dmais linda", "csd"));
-	return (0);
-} */
+	va_list	args;
+	int		i;
+	int		count;
+
+	if (!str || !str_is_valid(str))
+		return (-1);
+	va_start(args, str);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] != '%')
+			count += ft_print_c(str[i++], FD);
+		else
+			count += ft_handle_format(str, &i, args);
+	}
+	va_end(args);
+	return (count);
+}
+

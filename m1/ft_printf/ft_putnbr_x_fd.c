@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_x_fd.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/04 04:05:58 by ueslei            #+#    #+#             */
+/*   Updated: 2026/01/04 04:05:59 by ueslei           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "libftprintf.h"
-// TODO Ver a lógica completa, olhar sugestões da IA também.
 void	ft_putnbr_x_fd(unsigned int n, int fd)
 {
 	char	*hex;
@@ -12,8 +23,3 @@ void	ft_putnbr_x_fd(unsigned int n, int fd)
 	c = hex[n % 16];
 	write(fd, &c, 1);
 }
-// int main(void)
-// {
-//     ft_putnbr_x_fd(255, 1); // ff
-//     return (0);
-// }

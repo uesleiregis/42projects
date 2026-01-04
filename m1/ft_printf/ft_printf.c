@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uregis-d <uregis-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 01:15:57 by uregis-d          #+#    #+#             */
-/*   Updated: 2025/11/28 00:59:42 by uregis-d         ###   ########.fr       */
+/*   Updated: 2026/01/04 04:04:53 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-// static int	count_valid_descriptors(char *str, char *descriptors )
-// {
-// 	int	count;
-
-// 	count = 0;
-// 	if (!str || !descriptors)
-// 		return (-1);
-// 	while (*str)
-// 	{
-// 		if (*str == '%')
-// 		{
-// 			if (*(str + 1) == '\0')
-// 				break ;
-// 			if (*(str + 1) == '%')
-// 			{
-// 				str += 2;
-// 				continue ;
-// 			}
-// 			if (ft_strchr(descriptors, *(str + 1)))
-// 				count++;
-// 			str += 2;
-// 			continue ;
-// 		}
-// 		str++;
-// 	}
-// 	return (count);
-// }
 
 static int	str_is_valid(const char *str)
 {

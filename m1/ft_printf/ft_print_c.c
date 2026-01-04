@@ -6,14 +6,15 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 04:03:58 by ueslei            #+#    #+#             */
-/*   Updated: 2026/01/04 04:04:04 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/04 11:57:08 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_print_c(char c, int fd)
 {
-    ft_putchar_fd(c, fd);
-    return (1);
+	if (ft_putchar_fd(c, fd) == -1)
+		return (-1);
+	return (1);
 }

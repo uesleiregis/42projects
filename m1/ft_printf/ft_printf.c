@@ -6,11 +6,11 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 01:15:57 by uregis-d          #+#    #+#             */
-/*   Updated: 2026/01/04 04:04:53 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/04 17:00:27 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	str_is_valid(const char *str)
 {
@@ -30,23 +30,24 @@ static int	str_is_valid(const char *str)
 	}
 	return (1);
 }
+
 static int	ft_print_args_fd(char c, va_list list, int fd)
 {
-	if(c == 'c')
+	if (c == 'c')
 		return (ft_print_c((char)va_arg(list, int), fd));
-	else if(c == 's')
-		return (ft_print_s(va_arg(list, char *),fd));
-	else if(c == 'p')
+	else if (c == 's')
+		return (ft_print_s(va_arg(list, char *), fd));
+	else if (c == 'p')
 		return (ft_print_p(va_arg(list, void *), fd));
-	else if(c == 'd')
+	else if (c == 'd')
 		return (ft_print_d(va_arg(list, int), fd));
-	else if(c == 'i')
+	else if (c == 'i')
 		return (ft_print_i(va_arg(list, int), fd));
-	else if(c == 'u')
+	else if (c == 'u')
 		return (ft_print_u(va_arg(list, unsigned int), fd));
-	else if(c == 'x')
+	else if (c == 'x')
 		return (ft_print_x(va_arg(list, unsigned int), fd));
-	else if(c == 'X')
+	else if (c == 'X')
 		return (ft_print_x_up(va_arg(list, unsigned int), fd));
 	return (0);
 }
@@ -69,6 +70,7 @@ int	ft_printf(const char *str, ...)
 	va_list	args;
 	int		i;
 	int		count;
+	int		ret;
 
 	if (!str || !str_is_valid(str))
 		return (-1);
@@ -78,11 +80,16 @@ int	ft_printf(const char *str, ...)
 	while (str[i])
 	{
 		if (str[i] != '%')
-			count += ft_print_c(str[i++], FD);
+			ret = ft_print_c(str[i++], FD);
 		else
-			count += ft_handle_format(str, &i, args);
+			ret = ft_handle_format(str, &i, args);
+		if (ret == -1)
+		{
+			va_end(args);
+			return (-1);
+		}
+		count += ret;
 	}
 	va_end(args);
 	return (count);
 }
-

@@ -6,20 +6,23 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 04:05:58 by ueslei            #+#    #+#             */
-/*   Updated: 2026/01/04 04:05:59 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/04 17:00:44 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 
-#include "libftprintf.h"
-void	ft_putnbr_x_fd(unsigned int n, int fd)
+int	ft_putnbr_x_fd(unsigned int n, int fd)
 {
 	char	*hex;
 	char	c;
 
 	hex = "0123456789abcdef";
 	if (n >= 16)
-		ft_putnbr_x_fd(n / 16, fd);
+	{
+		if (ft_putnbr_x_fd(n / 16, fd) == -1)
+			return (-1);
+	}
 	c = hex[n % 16];
-	write(fd, &c, 1);
+	return (write(fd, &c, 1));
 }

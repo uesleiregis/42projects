@@ -10,22 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int ft_print_x(unsigned int n, int fd)
+int	ft_print_x(unsigned int n, int fd)
 {
 	unsigned long	x;
-	int		count;
+	int				count;
 
-    count = 0;
-    x = (unsigned long)n;
-	if(x == 0)
+	count = 0;
+	x = (unsigned long)n;
+	if (x == 0)
 		count++;
-  while(x > 0)
-  {
-		x/=16;
+	while (x > 0)
+	{
+		x /= 16;
 		count++;
-  }
-	ft_putnbr_x_fd(n, fd);
-    return (count);
+	}
+	if (ft_putnbr_x_fd(n, fd) == -1)
+		return (-1);
+	return (count);
 }

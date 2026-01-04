@@ -6,13 +6,13 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:54:21 by uregis-d          #+#    #+#             */
-/*   Updated: 2026/01/04 04:04:59 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/04 17:00:45 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	write (fd, &c, 1);
+	return (write(fd, &c, 1));
 }

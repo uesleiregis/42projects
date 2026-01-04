@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uregis-d <uregis-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:59:20 by uregis-d          #+#    #+#             */
-/*   Updated: 2025/11/25 15:26:20 by uregis-d         ###   ########.fr       */
+/*   Updated: 2026/01/04 17:00:46 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
-		return ;
-	write (fd, s, ft_strlen(s));
+		return (0);
+	return (write(fd, s, ft_strlen(s)));
 }

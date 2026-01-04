@@ -6,19 +6,21 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 04:06:06 by ueslei            #+#    #+#             */
-/*   Updated: 2026/01/04 04:06:07 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/04 17:00:42 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 
-#include "libftprintf.h"
-
-void	ft_putnbr_u_fd(unsigned int n, int fd)
+int	ft_putnbr_u_fd(unsigned int n, int fd)
 {
 	char	c;
 
 	if (n >= 10)
-		ft_putnbr_u_fd(n / 10, fd);
+	{
+		if (ft_putnbr_u_fd(n / 10, fd) == -1)
+			return (-1);
+	}
 	c = (n % 10) + '0';
-	write(fd, &c, 1);
+	return (write(fd, &c, 1));
 }

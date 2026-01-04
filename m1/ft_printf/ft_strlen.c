@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/20 11:51:02 by uregis-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *str)
 {

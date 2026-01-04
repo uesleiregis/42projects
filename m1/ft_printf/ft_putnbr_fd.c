@@ -6,30 +6,31 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:48:11 by uregis-d          #+#    #+#             */
-/*   Updated: 2026/01/04 04:05:13 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/04 17:00:46 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd)
 {
 	char	c;
 
 	if (n == -2147483648)
-	{
-		write (fd, "-2147483648", 11);
-		return ;
-	}
+		return (write(fd, "-2147483648", 11));
 	if (n < 0)
 	{
-		write(fd, "-", 1);
+		if (write(fd, "-", 1) == -1)
+			return (-1);
 		n *= -1;
 	}
 	if (n >= 10)
-		ft_putnbr_fd(n / 10, fd);
+	{
+		if (ft_putnbr_fd(n / 10, fd) == -1)
+			return (-1);
+	}
 	c = (n % 10) + '0';
-	write(fd, &c, 1);
+	return (write(fd, &c, 1));
 }
 // int main(void)
 // {

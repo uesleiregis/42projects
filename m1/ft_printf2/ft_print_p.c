@@ -6,7 +6,7 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 04:04:28 by ueslei            #+#    #+#             */
-/*   Updated: 2026/01/04 16:58:55 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/05 18:36:35 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_print_p(void *ptr, int fd)
 	int				count;
 
 	if (ptr == NULL)
-		return (ft_putstr_fd("(nil)", fd));
+		return (ft_putstr_fd("0x0", fd));
 	addr = (unsigned long)ptr;
 	x = addr;
 	if (ft_putstr_fd("0x", fd) == -1)

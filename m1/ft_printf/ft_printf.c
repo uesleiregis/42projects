@@ -6,7 +6,7 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 01:15:57 by uregis-d          #+#    #+#             */
-/*   Updated: 2026/01/04 17:00:27 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/05 14:26:52 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,28 @@ static int	str_is_valid(const char *str)
 	return (1);
 }
 
-static int	ft_print_args_fd(char c, va_list list, int fd)
+static int	ft_print_args_fd(char c, va_list *list, int fd)
 {
 	if (c == 'c')
-		return (ft_print_c((char)va_arg(list, int), fd));
+		return (ft_print_c((char)va_arg(*list, int), fd));
 	else if (c == 's')
-		return (ft_print_s(va_arg(list, char *), fd));
+		return (ft_print_s(va_arg(*list, char *), fd));
 	else if (c == 'p')
-		return (ft_print_p(va_arg(list, void *), fd));
+		return (ft_print_p(va_arg(*list, void *), fd));
 	else if (c == 'd')
-		return (ft_print_d(va_arg(list, int), fd));
+		return (ft_print_d(va_arg(*list, int), fd));
 	else if (c == 'i')
-		return (ft_print_i(va_arg(list, int), fd));
+		return (ft_print_i(va_arg(*list, int), fd));
 	else if (c == 'u')
-		return (ft_print_u(va_arg(list, unsigned int), fd));
+		return (ft_print_u(va_arg(*list, unsigned int), fd));
 	else if (c == 'x')
-		return (ft_print_x(va_arg(list, unsigned int), fd));
+		return (ft_print_x(va_arg(*list, unsigned int), fd));
 	else if (c == 'X')
-		return (ft_print_x_up(va_arg(list, unsigned int), fd));
+		return (ft_print_x_up(va_arg(*list, unsigned int), fd));
 	return (0);
 }
 
-static int	ft_handle_format(const char *str, int *i, va_list args)
+static int	ft_handle_format(const char *str, int *i, va_list *args)
 {
 	int	count;
 
@@ -82,7 +82,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] != '%')
 			ret = ft_print_c(str[i++], FD);
 		else
-			ret = ft_handle_format(str, &i, args);
+			ret = ft_handle_format(str, &i, &args);
 		if (ret == -1)
 		{
 			va_end(args);

@@ -33,6 +33,8 @@ int	ft_print_p(void *ptr, int fd)
 	unsigned long	x;
 	int				count;
 
+	if (ptr == NULL)
+		return (ft_putstr_fd("(nil)", fd));
 	addr = (unsigned long)ptr;
 	x = addr;
 	if (ft_putstr_fd("0x", fd) == -1)

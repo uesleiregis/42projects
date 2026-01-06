@@ -1,0 +1,6 @@
+Esse texto foi lido corretamente?
+Linha
+Por
+Linha?
+E o que acontece com \n?
+Vejamos\n o q\nue \nacontece.

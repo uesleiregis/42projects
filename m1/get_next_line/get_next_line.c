@@ -1,134 +1,105 @@
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/06 00:00:00 by uregis-d          #+#    #+#             */
+/*   Updated: 2026/01/06 23:51:18 by ueslei           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <string.h>
+#include "get_next_line.h"
 
-#define BUFFER_SIZE 42
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-int ft_strlen(char const *str);
-static char	*ft_strndup(const char *s, const unsigned int n)
-
-
-//cc get_next_line.c -Wall -Wextra -Werror -D BUFFER_SIZE=42
-
-
-// fd = open("text.txt", O_RDONLY);
-
-
-char *get_next_line(int fd)
+/*
+** Keeps reading from fd until we find a '\n' or hit EOF.
+** Joins everything into stash so we don't lose any bytes.
+*/
+static char	*ft_read_line(int fd, char *stash)
 {
-	static char	*resto;			//para salvar o que sobrou da última leitura
-	char		*buffer;		// área temporária de leitura
-	char		*linha;			// o que será retornado
-	ssize_t		bytes;			// nº de bytes lidos em cada read()
-	int			i;
-
-	i = 0;
-	// 1 - validação
-	if(fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	// 2 - Alocar memória para o buffer temporário.
+	char	*buffer;
+	char	*temp;
+	ssize_t	bytes;
 
 	buffer = malloc(BUFFER_SIZE + 1);
-	if(!buffer)
+	if (!buffer)
 		return (NULL);
-	
-	bytes = read(fd, buffer, BUFFER_SIZE + 1);
-
-	while(buffer[i] && buffer[i] != '\n')
-		i++;
-	
-	linha = ft_strndup(buffer[0], i);
-	
-	
-	return (linha);
-}
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	size_src;
-
-	size_src = 0;
-	while (src[size_src])
-		size_src++;
-	if (size == 0)
-		return (size_src);
-	i = 0;
-	while (src[i] && (i < (size - 1)))
+	bytes = 1;
+	while (bytes > 0 && !ft_strchr(stash, '\n'))
 	{
-		dst[i] = src[i];
-		i++;
+		bytes = read(fd, buffer, BUFFER_SIZE);
+		if (bytes < 0)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		buffer[bytes] = '\0';
+		temp = ft_strjoin(stash, buffer);
+		free(stash);
+		stash = temp;
 	}
-	dst[i] = '\0';
-	return (size_src);
+	free(buffer);
+	return (stash);
 }
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*str;
-	int		i;
-	int		j;
 
-	str = malloc((ft_strlen((char *) s1) + ft_strlen((char *) s2) + 1));
-	if (!str)
-		return (NULL);
-	if (!s1 || !s2)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-int ft_strlen(char const *str)
+/*
+** Grabs the first line from stash (including the '\n' if present).
+*/
+static char	*ft_extract_line(char *stash)
 {
 	int	i;
 
 	i = 0;
-	while(str[i])
-		i++;
-	return (i);
-}
-
-int static	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-// Retorna uma nova string com apenas os n primeiros caracteres
-// copiados + \0.
-static char	*ft_strndup(const char *s, const unsigned int n)
-{
-	char	*p;
-	int		i;
-
-	i = 0;
-	p = (char *)malloc(sizeof(char) * (n + 1));
-	if (p == NULL)
+	if (!stash || stash[0] == '\0')
 		return (NULL);
-	while (s[i] && i < n)
-	{
-		p[i] = s[i];
+	while (stash[i] && stash[i] != '\n')
 		i++;
+	if (stash[i] == '\n')
+		i++;
+	return (ft_strndup(stash, i));
+}
+
+/*
+** Removes the line we just returned and keeps what's left for next call.
+*/
+static char	*ft_update_stash(char *stash)
+{
+	int		i;
+	char	*new_stash;
+
+	i = 0;
+	if (!stash)
+		return (NULL);
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\n')
+		i++;
+	if (stash[i] == '\0')
+	{
+		free(stash);
+		return (NULL);
 	}
-	p[i] = '\0';
-	return (p);
+	new_stash = ft_strdup(stash + i);
+	free(stash);
+	return (new_stash);
+}
+
+/*
+** Main function - returns one line at a time from fd.
+** Static stash saves leftovers between calls.
+*/
+char	*get_next_line(int fd)
+{
+	static char	*stash;
+	char		*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	stash = ft_read_line(fd, stash);
+	if (!stash)
+		return (NULL);
+	line = ft_extract_line(stash);
+	stash = ft_update_stash(stash);
+	return (line);
 }

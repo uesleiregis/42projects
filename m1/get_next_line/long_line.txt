@@ -1,0 +1,1 @@
+This is a very long line that should be longer than the default BUFFER_SIZE of 42 bytes to test if the function handles lines that span multiple read calls correctly. Lorem ipsum dolor sit amet, consectetur adipiscing elit.

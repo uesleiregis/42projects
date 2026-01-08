@@ -6,7 +6,7 @@
 /*   By: ueslei <ueslei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 00:00:00 by uregis-d          #+#    #+#             */
-/*   Updated: 2026/01/06 23:51:18 by ueslei           ###   ########.fr       */
+/*   Updated: 2026/01/08 00:25:07 by ueslei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static char	*ft_read_line(int fd, char *stash)
 		if (bytes < 0)
 		{
 			free(buffer);
+			free(stash);
 			return (NULL);
 		}
 		buffer[bytes] = '\0';
